@@ -58,7 +58,12 @@ public class Matrix {
      */
     public int[][] getData() {
         // TODO: return the cells. Think about whether you hand out the field itself or a copy.
-        throw new UnsupportedOperationException("TODO");
+
+        int[][] returnArray = new int[this.data.length][this.data[0].length];
+        for(int i = 0; i < data.length; i++){
+            System.arraycopy(this.data[i], 0, returnArray[i], 0, data[0].length);
+        }
+        return returnArray;
     }
 
     /**
