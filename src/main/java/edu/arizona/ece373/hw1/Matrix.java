@@ -27,7 +27,7 @@ public class Matrix {
         // TODO: check that rows >= 1 and columns >= 1 (IllegalArgumentException otherwise),
         // TODO: then allocate the array field with that many rows and columns.
         if(rows >= 1 && columns >= 1){
-            data = new int[rows][columns];
+            this.data = new int[rows][columns];
         }
         else{
 
