@@ -15,7 +15,7 @@ package edu.arizona.ece373.hw1;
 public class Matrix {
 
     // TODO: declare the private field `data` holding a two-dimensional array of int.
-
+    private int[][] data;
     /**
      * Creates a matrix of the given size whose cells are all zero.
      *
@@ -26,7 +26,13 @@ public class Matrix {
     public Matrix(int rows, int columns) {
         // TODO: check that rows >= 1 and columns >= 1 (IllegalArgumentException otherwise),
         // TODO: then allocate the array field with that many rows and columns.
-        throw new UnsupportedOperationException("TODO");
+        if(rows >= 1 && columns >= 1){
+            data = new int[rows][columns];
+        }
+        else{
+
+            throw new IllegalArgumentException("number of rows and columns must be at least 1.");
+        }
     }
 
     /**
