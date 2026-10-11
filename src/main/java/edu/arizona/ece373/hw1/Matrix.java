@@ -45,7 +45,10 @@ public class Matrix {
     public Matrix(int[][] data) {
         // TODO: validate the argument (not null, at least 1 row, at least 1 column,
         // TODO: every row the same length) and store it in the field.
-        throw new UnsupportedOperationException("TODO");
+        if(data == null || data.length < 1 || data[0].length < 1){
+            throw new IllegalArgumentException("Array must not be null and its row and column size must be at least 1");
+        }
+        this.data = data;
     }
 
     /**
