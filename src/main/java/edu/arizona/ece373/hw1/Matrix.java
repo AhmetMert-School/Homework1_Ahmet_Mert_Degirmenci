@@ -86,7 +86,7 @@ public class Matrix {
      */
     public int getRows() {
         // TODO: return the number of rows.
-        throw new UnsupportedOperationException("TODO");
+        return data.length;
     }
 
     /**
@@ -96,7 +96,7 @@ public class Matrix {
      */
     public int getColumns() {
         // TODO: return the number of columns.
-        throw new UnsupportedOperationException("TODO");
+        return data[0].length;
     }
 
     /**
