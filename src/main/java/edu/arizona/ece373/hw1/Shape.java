@@ -137,8 +137,6 @@ public class Shape extends Matrix {
      * @return a new toad shape
      */
     public static Shape toad() {
-        // TODO: return a Shape named "Toad" holding
-        // TODO:   0 1 1 1 / 1 1 1 0
         // Returns block:
         // 0111
         // 1110
@@ -152,7 +150,14 @@ public class Shape extends Matrix {
      * @param args ignored
      */
     public static void main(String[] args) {
-        // TODO: create a Beehive and a Boat and print them through a MatrixPrinter variable.
-        throw new UnsupportedOperationException("TODO");
+        // Create printer obj to print shapes
+        BoolMatrixPrinter printer = new BoolMatrixPrinter();
+        //create boat shape
+        Shape boat = Shape.boat();
+        // create beehive shape
+        Shape beehive = Shape.beehive();
+        //Print them to the console
+        System.out.println(printer.print(boat));
+        System.out.println(printer.print(beehive));
     }
 }
