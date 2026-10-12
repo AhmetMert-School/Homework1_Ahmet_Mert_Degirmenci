@@ -130,7 +130,10 @@ public class Matrix {
      */
     public int get(int row, int column) {
         // TODO: bounds-check the coordinate and return the cell.
-        throw new UnsupportedOperationException("TODO");
+        if(row < 0 || row >= getRows() || column < 0 || column >= getColumns()){
+            throw new IndexOutOfBoundsException("Row and column number must be in the bounds of matrix");
+        }
+        return this.data[row][column];
     }
 
     /**
