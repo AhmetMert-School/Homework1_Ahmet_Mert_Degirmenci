@@ -52,8 +52,8 @@ public class Shape extends Matrix {
      * @return the shape name
      */
     public String getName() {
-        // TODO: return the name.
-        throw new UnsupportedOperationException("TODO");
+        //returns the name.
+        return this.name;
     }
 
     /**
@@ -64,7 +64,11 @@ public class Shape extends Matrix {
      */
     public void setName(String name) {
         // TODO: check and store the name.
-        throw new UnsupportedOperationException("TODO");
+        //Checks for empty and null string
+        if(name == null || name.isEmpty()){
+            throw new IllegalArgumentException("Name cannot be null or blank");
+        }
+        this.name = name;
     }
 
     /**
