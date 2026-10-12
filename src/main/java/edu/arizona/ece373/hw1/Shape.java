@@ -100,8 +100,9 @@ public class Shape extends Matrix {
      * @return a new blinker shape
      */
     public static Shape blinker() {
-        // TODO: return a Shape named "Blinker" holding a single row 1 1 1.
-        throw new UnsupportedOperationException("TODO");
+        //Returns blinker shape:
+        // 111
+        return new Shape("Boat",new int[][] {{1,1,1}});
     }
 
     /**
@@ -111,9 +112,11 @@ public class Shape extends Matrix {
      * @return a new glider shape
      */
     public static Shape glider() {
-        // TODO: return a Shape named "Glider" holding
-        // TODO:   0 1 0 / 0 0 1 / 1 1 1
-        throw new UnsupportedOperationException("TODO");
+        //Returns glider
+        // 010
+        // 001
+        // 111
+        return new Shape("Boat",new int[][] {{0,1,0},{0,0,1},{1,1,1}});
     }
 
     /**
