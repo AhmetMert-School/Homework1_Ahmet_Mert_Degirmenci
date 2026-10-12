@@ -69,8 +69,8 @@ public class Matrix {
         // TODO: return the cells. Think about whether you hand out the field itself or a copy.
 
         int[][] returnArray = new int[this.data.length][this.data[0].length];
-        for(int i = 0; i < data.length; i++){
-            System.arraycopy(this.data[i], 0, returnArray[i], 0, data[0].length);
+        for(int i = 0; i < this.data.length; i++){
+            System.arraycopy(this.data[i], 0, returnArray[i], 0, this.data[0].length);
         }
         return returnArray;
     }
