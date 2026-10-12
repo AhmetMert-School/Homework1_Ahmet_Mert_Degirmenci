@@ -14,7 +14,6 @@ package edu.arizona.ece373.hw1;
  */
 public class Shape extends Matrix {
 
-    // TODO: declare the private field `name`.
     private String name = "";
 
     /**
@@ -27,7 +26,6 @@ public class Shape extends Matrix {
      */
     public Shape(String name, int[][] data) {
         super(data);
-        // TODO: check the name, check that every cell is 0 or 1, then store the name.
         //Check if the name is empty or null if not continue checking the matrix
         if(name != null && !name.isEmpty()){
             //check matrix's each cell if not 0 or 1 throw exception
@@ -63,7 +61,6 @@ public class Shape extends Matrix {
      * @throws IllegalArgumentException if the name is {@code null} or blank
      */
     public void setName(String name) {
-        // TODO: check and store the name.
         //Checks for empty and null string
         if(name == null || name.isEmpty()){
             throw new IllegalArgumentException("Name cannot be null or blank");
@@ -77,9 +74,11 @@ public class Shape extends Matrix {
      * @return a new beehive shape
      */
     public static Shape beehive() {
-        // TODO: return a Shape named "Beehive" holding
-        // TODO:   0 1 1 0 / 1 0 0 1 / 0 1 1 0
-        throw new UnsupportedOperationException("TODO");
+        //creates beehive shape
+        // 0110
+        // 1001
+        // 0110
+        return new Shape("Beehive",new int[][] {{0,1,1,0},{1,0,0,1},{0,1,1,0}});
     }
 
     /**
@@ -88,9 +87,11 @@ public class Shape extends Matrix {
      * @return a new boat shape
      */
     public static Shape boat() {
-        // TODO: return a Shape named "Boat" holding
-        // TODO:   1 1 0 / 1 0 1 / 0 1 0
-        throw new UnsupportedOperationException("TODO");
+        //creates boat shape:
+        // 110
+        // 101
+        // 010
+        return new Shape("Boat",new int[][] {{1,1,0},{1,0,1},{0,1,0}});
     }
 
     /**
