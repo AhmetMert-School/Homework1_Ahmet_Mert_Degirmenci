@@ -78,7 +78,7 @@ public class Shape extends Matrix {
         // 0110
         // 1001
         // 0110
-        return new Shape("Beehive",new int[][] {{0,1,1,0},{1,0,0,1},{0,1,1,0}});
+        return new Shape("beehive",new int[][] {{0,1,1,0},{1,0,0,1},{0,1,1,0}});
     }
 
     /**
@@ -91,7 +91,7 @@ public class Shape extends Matrix {
         // 110
         // 101
         // 010
-        return new Shape("Boat",new int[][] {{1,1,0},{1,0,1},{0,1,0}});
+        return new Shape("boat",new int[][] {{1,1,0},{1,0,1},{0,1,0}});
     }
 
     /**
@@ -102,7 +102,7 @@ public class Shape extends Matrix {
     public static Shape blinker() {
         //Returns blinker shape:
         // 111
-        return new Shape("Boat",new int[][] {{1,1,1}});
+        return new Shape("blinker",new int[][] {{1,1,1}});
     }
 
     /**
@@ -116,7 +116,7 @@ public class Shape extends Matrix {
         // 010
         // 001
         // 111
-        return new Shape("Boat",new int[][] {{0,1,0},{0,0,1},{1,1,1}});
+        return new Shape("glider",new int[][] {{0,1,0},{0,0,1},{1,1,1}});
     }
 
     /**
@@ -125,9 +125,10 @@ public class Shape extends Matrix {
      * @return a new block shape
      */
     public static Shape block() {
-        // TODO: return a Shape named "Block" holding
-        // TODO:   1 1 / 1 1
-        throw new UnsupportedOperationException("TODO");
+        // Returns block:
+        // 11
+        // 11
+        return new Shape("block",new int[][] {{1,1},{1,1}});
     }
 
     /**
@@ -138,7 +139,10 @@ public class Shape extends Matrix {
     public static Shape toad() {
         // TODO: return a Shape named "Toad" holding
         // TODO:   0 1 1 1 / 1 1 1 0
-        throw new UnsupportedOperationException("TODO");
+        // Returns block:
+        // 0111
+        // 1110
+        return new Shape("toad",new int[][] {{0,1,1,1},{1,1,1,0}});
     }
 
     /**
