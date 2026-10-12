@@ -82,7 +82,19 @@ public class Matrix {
      */
     public void setData(int[][] data) {
         // TODO: validate exactly like the array constructor, then store.
-        throw new UnsupportedOperationException("TODO");
+        if(data == null || data.length < 1 || data[0].length < 1){
+            throw new IllegalArgumentException("Array must not be null and its row and column size must be at least 1");
+        }
+        int lengthCollumns = data[0].length;
+        for(int i = 1; i < data.length; i++){
+            if(lengthCollumns != data[i].length){
+                throw new IllegalArgumentException("Array must be rectangular");
+            }
+        }
+        this.data = new int[data.length][data[0].length];
+        for(int i = 0; i < data.length; i++){
+            System.arraycopy(data[i], 0, this.data[i], 0, data[0].length);
+        }
     }
 
     /**
