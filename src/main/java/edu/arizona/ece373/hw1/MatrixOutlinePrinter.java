@@ -60,7 +60,10 @@ public class MatrixOutlinePrinter implements MatrixPrinter {
      * @return the characters that belong between the two border characters of this line
      */
     protected String printRow(Matrix matrix, int row) {
-        // TODO: return one blank character per column.
-        throw new UnsupportedOperationException("TODO");
+        StringBuilder outputRow = new StringBuilder();
+        for(int i = 0; i < matrix.getColumns(); i++){
+            outputRow.append(" ");
+        }
+        return outputRow.toString();
     }
 }
