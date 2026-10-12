@@ -6,14 +6,13 @@
 //------------------------------------------------------
 package edu.arizona.ece373.hw1;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for {@link Matrix} (Task 1).
@@ -53,11 +52,13 @@ class MatrixTest {
     }
 
     @Test
-    @Disabled("TODO: remove this annotation once you have written the test")
     @DisplayName("getData returns the values that were passed to the constructor")
     void getDataReturnsTheStoredValues() {
         // TODO: build a matrix from an int[][] you write out by hand, then check with
         // TODO: assertArrayEquals that getData() gives those values back.
+        int[][] initArray = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
+        Matrix fromArray = new Matrix(initArray);
+        assertArrayEquals(initArray, fromArray.getData());
     }
 
     @Test
