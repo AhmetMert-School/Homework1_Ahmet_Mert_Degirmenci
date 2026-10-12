@@ -48,6 +48,12 @@ public class Matrix {
         if(data == null || data.length < 1 || data[0].length < 1){
             throw new IllegalArgumentException("Array must not be null and its row and column size must be at least 1");
         }
+        int lengthCollumns = data[0].length;
+        for(int i = 1; i < data.length; i++){
+            if(lengthCollumns != data[i].length){
+                throw new IllegalArgumentException("Array must be rectangular");
+            }
+        }
         this.data = data;
     }
 
