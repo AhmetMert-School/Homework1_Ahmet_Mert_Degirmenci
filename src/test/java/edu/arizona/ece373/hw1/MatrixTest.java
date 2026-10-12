@@ -62,10 +62,17 @@ class MatrixTest {
     }
 
     @Test
-    @Disabled("TODO: remove this annotation once you have written the test")
     @DisplayName("setData replaces the contents of the matrix")
     void setDataReplacesContents() {
         // TODO: create a matrix, call setData with a different array, and check that
         // TODO: getRows, getColumns and getData all reflect the new array.
+        int[][] initArray = {{1,3,4,5},{5,6,7,8},{9,10,11,12}};
+        int[][] updatedArray = {{2,4,1},{9,12,6},{20,432,2},{32,43,7},{98,546,7}};
+        Matrix fromArray = new Matrix(initArray);
+        fromArray.setData(updatedArray);
+        assertArrayEquals(updatedArray,fromArray.getData());
+        assertEquals(updatedArray.length, fromArray.getRows());
+        assertEquals(updatedArray[0].length, fromArray.getColumns());
+        assertEquals(updatedArray[1][0], fromArray.get(1,0));
     }
 }
