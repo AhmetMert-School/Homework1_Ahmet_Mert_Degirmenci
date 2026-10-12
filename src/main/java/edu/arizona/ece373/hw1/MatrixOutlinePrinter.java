@@ -42,10 +42,6 @@ public class MatrixOutlinePrinter implements MatrixPrinter {
      */
     @Override
     public String print(Matrix matrix) {
-        // TODO: reject a null matrix, then build the frame with a StringBuilder:
-        // TODO:   a border line, one line per row, a border line, each ending in '\n'.
-        // TODO: the inside of each line must come from printRow(matrix, row) so that
-        // TODO: BoolMatrixPrinter can change it by overriding that one method.
         //Reject null matrix
         if(matrix == null){
             throw new IllegalArgumentException("Matrix cannot be null");
@@ -93,6 +89,7 @@ public class MatrixOutlinePrinter implements MatrixPrinter {
      * @return the characters that belong between the two border characters of this line
      */
     protected String printRow(Matrix matrix, int row) {
+        // generate empty strings using getColumns()
         StringBuilder outputRow = new StringBuilder();
         for(int i = 0; i < matrix.getColumns(); i++){
             outputRow.append(" ");
