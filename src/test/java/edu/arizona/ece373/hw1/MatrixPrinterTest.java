@@ -1,6 +1,7 @@
 //------------------------------------------------------
 // Homework 1
-// Written by: (your name and student ID)
+// Written by: Ahmet Mert Degirmenci ID: 23829642
+// Date 10/13/2026
 // ECE 373 Object-Oriented Software Design, Section 001 - Fall 2026
 // The University of Arizona
 //------------------------------------------------------
@@ -58,18 +59,51 @@ class MatrixPrinterTest {
     }
 
     @Test
-    @Disabled("TODO: remove this annotation once you have written the test")
     @DisplayName("the boolean printer renders a second matrix of your choice")
     void boolPrinterRendersASecondMatrix() {
-        // TODO: pick a second 0/1 matrix with a different shape, write down the string you
-        // TODO: expect, and compare it with assertEquals.
+        Matrix matrix = new Matrix(new int[][] {
+                {0, 0, 1, 0, 1},
+                {0, 1, 0, 0, 1},
+                {1, 0, 0, 1, 1},
+                {1, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0},
+                {1, 1, 1, 1, 1},
+        });
+        String expected = ""
+                + "+-----+\n"
+                + "|00101|\n"
+                + "|01001|\n"
+                + "|10011|\n"
+                + "|10100|\n"
+                + "|00000|\n"
+                + "|11111|\n"
+                + "+-----+\n";
+        assertEquals(expected, new BoolMatrixPrinter().print(matrix));
     }
 
     @Test
-    @Disabled("TODO: remove this annotation once you have written the test")
     @DisplayName("a BoolMatrixPrinter used through the MatrixOutlinePrinter type still prints values")
     void overridingBeatsTheStaticType() {
         // TODO: store a new BoolMatrixPrinter in a MatrixOutlinePrinter variable, print a
         // TODO: matrix through it, and check that you see the values and not blanks.
+        Matrix matrix = new Matrix(new int[][] {
+                {0, 0, 1, 0, 1},
+                {0, 1, 0, 0, 1},
+                {1, 0, 0, 1, 1},
+                {1, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0},
+                {1, 1, 1, 1, 1},
+        });
+        String expected = ""
+                + "+-----+\n"
+                + "|00101|\n"
+                + "|01001|\n"
+                + "|10011|\n"
+                + "|10100|\n"
+                + "|00000|\n"
+                + "|11111|\n"
+                + "+-----+\n";
+        MatrixOutlinePrinter result = new BoolMatrixPrinter();
+        assertEquals(expected, result.print(matrix));
     }
 }
