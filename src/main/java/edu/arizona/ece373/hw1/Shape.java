@@ -15,6 +15,7 @@ package edu.arizona.ece373.hw1;
 public class Shape extends Matrix {
 
     // TODO: declare the private field `name`.
+    private String name = "";
 
     /**
      * Creates a named shape from a pattern of zeroes and ones.
@@ -27,7 +28,22 @@ public class Shape extends Matrix {
     public Shape(String name, int[][] data) {
         super(data);
         // TODO: check the name, check that every cell is 0 or 1, then store the name.
-        throw new UnsupportedOperationException("TODO");
+        //Check if the name is empty or null if not continue checking the matrix
+        if(name != null && !name.isEmpty()){
+            //check matrix's each cell if not 0 or 1 throw exception
+            for(int row = 0; row < getRows(); row++){
+                for(int column = 0; column < getColumns(); column++){
+                    if(data[row][column] != 1 && data[row][column] != 0){
+                        throw new IllegalArgumentException("data must be made of 0s and 1s");
+                    }
+                }
+            }
+            this.name = name;
+        }
+        //If string is empty or null throw exception
+        else{
+            throw new IllegalArgumentException("Name cannot be empty string");
+        }
     }
 
     /**
