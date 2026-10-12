@@ -39,8 +39,23 @@ public class BoolMatrixPrinter extends MatrixOutlinePrinter {
      */
     @Override
     protected String printRow(Matrix matrix, int row) {
-        // TODO: walk the columns of this row; throw IllegalArgumentException if a cell holds
-        // TODO: anything other than 0 or 1, otherwise append DEAD or ALIVE.
-        throw new UnsupportedOperationException("TODO");
+        StringBuilder result = new StringBuilder();
+        //Iterates through each column
+        for(int column = 0; column < matrix.getColumns(); column++){
+            //value stores value from given row column
+            int value = matrix.get(row, column);
+            // checks for cases 0(dead), 1(alive), if neither throws illegalArgumentException
+            switch (value){
+                case 1:
+                    result.append(ALIVE);
+                    break;
+                case 0:
+                    result.append(DEAD);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Values stored must be 0 or 1");
+            }
+        }
+        return result.toString();
     }
 }
