@@ -46,7 +46,31 @@ public class MatrixOutlinePrinter implements MatrixPrinter {
         // TODO:   a border line, one line per row, a border line, each ending in '\n'.
         // TODO: the inside of each line must come from printRow(matrix, row) so that
         // TODO: BoolMatrixPrinter can change it by overriding that one method.
-        throw new UnsupportedOperationException("TODO");
+        if(matrix == null){
+            throw new IllegalArgumentException("Matrix cannot be null");
+        }
+
+        StringBuilder firstAndLastLine = new StringBuilder();
+        StringBuilder middle = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+
+        firstAndLastLine.append(CORNER);
+        firstAndLastLine.append(CORNER);
+        firstAndLastLine.append("\n");
+        for(int i = 0; i < matrix.getColumns(); i++){
+            firstAndLastLine.insert(1,HORIZONTAL);
+        }
+
+        for(int i = 0; i < matrix.getRows(); i++){
+            middle.append(VERTICAL);
+            middle.append(printRow(matrix, i));
+            middle.append(VERTICAL);
+            middle.append("\n");
+        }
+        result.append(firstAndLastLine);
+        result.append(middle);
+        result.append(firstAndLastLine);
+        return result.toString();
     }
 
     /**
