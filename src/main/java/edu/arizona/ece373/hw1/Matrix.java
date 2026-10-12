@@ -54,7 +54,10 @@ public class Matrix {
                 throw new IllegalArgumentException("Array must be rectangular");
             }
         }
-        this.data = data;
+        this.data = new int[data.length][data[0].length];
+        for(int i = 0; i < data.length; i++){
+            System.arraycopy(data[i], 0, this.data[i], 0, data[0].length);
+        }
     }
 
     /**
