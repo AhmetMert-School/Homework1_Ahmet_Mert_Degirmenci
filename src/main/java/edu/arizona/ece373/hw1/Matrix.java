@@ -1,6 +1,7 @@
 //------------------------------------------------------
 // Homework 1
-// Written by: (your name and student ID)
+// Written by: Ahmet Mert Degirmenci ID: 23829642
+// Date 10/13/2026
 // ECE 373 Object-Oriented Software Design, Section 001 - Fall 2026
 // The University of Arizona
 //------------------------------------------------------
@@ -12,9 +13,11 @@ package edu.arizona.ece373.hw1;
  * <p>Task 1 of the homework. The array of cells must stay {@code private}: everything outside
  * this class reaches the cells through the methods below.</p>
  */
+
+
 public class Matrix {
 
-    // TODO: declare the private field `data` holding a two-dimensional array of int.
+    //Holds 2-dimensional array for Matrix class
     private int[][] data;
     /**
      * Creates a matrix of the given size whose cells are all zero.
@@ -24,8 +27,8 @@ public class Matrix {
      * @throws IllegalArgumentException if {@code rows} or {@code columns} is less than 1
      */
     public Matrix(int rows, int columns) {
-        // TODO: check that rows >= 1 and columns >= 1 (IllegalArgumentException otherwise),
-        // TODO: then allocate the array field with that many rows and columns.
+        //Checks if rows and number of columns are within bounds as
+        // matrix cannot have 0 rows or 0 columns
         if(rows >= 1 && columns >= 1){
             this.data = new int[rows][columns];
         }
@@ -43,18 +46,22 @@ public class Matrix {
      *                                  columns, has a {@code null} row, or is jagged
      */
     public Matrix(int[][] data) {
-        // TODO: validate the argument (not null, at least 1 row, at least 1 column,
-        // TODO: every row the same length) and store it in the field.
+        //Checks for null and 0 rows and columns
         if(data == null || data.length < 1 || data[0].length < 1){
             throw new IllegalArgumentException("Array must not be null and its row and column size must be at least 1");
         }
+
+        //Checks if the input array is rectangular by checking each number of columns in each row
         int lengthCollumns = data[0].length;
         for(int i = 1; i < data.length; i++){
             if(lengthCollumns != data[i].length){
                 throw new IllegalArgumentException("Array must be rectangular");
             }
         }
+        // Creates new array as we do not want access outside of the class
         this.data = new int[data.length][data[0].length];
+
+        // Copy data to newly initialized array
         for(int i = 0; i < data.length; i++){
             System.arraycopy(data[i], 0, this.data[i], 0, data[0].length);
         }
@@ -66,9 +73,10 @@ public class Matrix {
      * @return the current values, {@code result[row][column]}
      */
     public int[][] getData() {
-        // TODO: return the cells. Think about whether you hand out the field itself or a copy.
 
+        // We do not want access to the class's field so we create new array to create copy
         int[][] returnArray = new int[this.data.length][this.data[0].length];
+        // Copy data from class's field to the array that will be returned.
         for(int i = 0; i < this.data.length; i++){
             System.arraycopy(this.data[i], 0, returnArray[i], 0, this.data[0].length);
         }
@@ -84,17 +92,20 @@ public class Matrix {
      * @throws IllegalArgumentException if {@code data} is not a legal matrix body
      */
     public void setData(int[][] data) {
-        // TODO: validate exactly like the array constructor, then store.
+        // Checks for null data types and 0 row and column sizes
         if(data == null || data.length < 1 || data[0].length < 1){
             throw new IllegalArgumentException("Array must not be null and its row and column size must be at least 1");
         }
+        //Checks if the input array is rectangular by checking each number of columns in each row
         int lengthCollumns = data[0].length;
         for(int i = 1; i < data.length; i++){
             if(lengthCollumns != data[i].length){
                 throw new IllegalArgumentException("Array must be rectangular");
             }
         }
+        //setData overwrites the previous array so we need to initialize new array to erase previous one.
         this.data = new int[data.length][data[0].length];
+        // After initializing new array copy the data.
         for(int i = 0; i < data.length; i++){
             System.arraycopy(data[i], 0, this.data[i], 0, data[0].length);
         }
@@ -106,7 +117,7 @@ public class Matrix {
      * @return the row count, always at least 1
      */
     public int getRows() {
-        // TODO: return the number of rows.
+        // returns row count
         return data.length;
     }
 
@@ -116,7 +127,7 @@ public class Matrix {
      * @return the column count, always at least 1
      */
     public int getColumns() {
-        // TODO: return the number of columns.
+        // returns column count
         return data[0].length;
     }
 
@@ -129,7 +140,7 @@ public class Matrix {
      * @throws IndexOutOfBoundsException if the coordinate is outside the matrix
      */
     public int get(int row, int column) {
-        // TODO: bounds-check the coordinate and return the cell.
+        // Row and column index cannot be greater than matrix size
         if(row < 0 || row >= getRows() || column < 0 || column >= getColumns()){
             throw new IndexOutOfBoundsException("Row and column number must be in the bounds of matrix");
         }
@@ -145,7 +156,7 @@ public class Matrix {
      * @throws IndexOutOfBoundsException if the coordinate is outside the matrix
      */
     public void set(int row, int column, int value) {
-        // TODO: bounds-check the coordinate and write the cell.
+        // Row and column index cannot be greater than matrix size
         if(row < 0 || row >= getRows() || column < 0 || column >= getColumns()){
             throw new IndexOutOfBoundsException("Row and column number must be in the bounds of matrix");
         }
