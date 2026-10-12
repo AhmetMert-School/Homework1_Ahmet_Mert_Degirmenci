@@ -146,6 +146,9 @@ public class Matrix {
      */
     public void set(int row, int column, int value) {
         // TODO: bounds-check the coordinate and write the cell.
-        throw new UnsupportedOperationException("TODO");
+        if(row < 0 || row >= getRows() || column < 0 || column >= getColumns()){
+            throw new IndexOutOfBoundsException("Row and column number must be in the bounds of matrix");
+        }
+        this.data[row][column] = value;
     }
 }
