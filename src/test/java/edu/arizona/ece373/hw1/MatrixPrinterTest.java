@@ -58,11 +58,26 @@ class MatrixPrinterTest {
     }
 
     @Test
-    @Disabled("TODO: remove this annotation once you have written the test")
     @DisplayName("the boolean printer renders a second matrix of your choice")
     void boolPrinterRendersASecondMatrix() {
-        // TODO: pick a second 0/1 matrix with a different shape, write down the string you
-        // TODO: expect, and compare it with assertEquals.
+        Matrix matrix = new Matrix(new int[][] {
+                {0, 0, 1, 0, 1},
+                {0, 1, 0, 0, 1},
+                {1, 0, 0, 1, 1},
+                {1, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0},
+                {1, 1, 1, 1, 1},
+        });
+        String expected = ""
+                + "+-----+\n"
+                + "|00101|\n"
+                + "|01001|\n"
+                + "|10011|\n"
+                + "|10100|\n"
+                + "|00000|\n"
+                + "|11111|\n"
+                + "+-----+\n";
+        assertEquals(expected, new BoolMatrixPrinter().print(matrix));
     }
 
     @Test
