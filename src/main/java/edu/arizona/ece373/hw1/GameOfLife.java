@@ -107,15 +107,15 @@ public class GameOfLife extends Matrix {
         // TODO: look at the eight surrounding coordinates and count the live ones,
         // TODO: skipping coordinates that fall outside the field.
         //Checks the beginning index of the neighbours if it is out of bounds assigns the closest value
-        int rowToCheck = (row-1 < 0) ? 0: row-1;
-        int columnToCheck = (column-1 < 0) ? 0: column-1;
+
+
         int numberOfAliveNeighbours = 0;
         //for loop continues either row + 1 is reached or rightmost, bottom bound is reached
         // to not include the outside bound indexes
-        for(; rowToCheck <= row + 1 && rowToCheck < getRows(); rowToCheck++){
-            for(; columnToCheck <= column + 1 && columnToCheck < getColumns(); columnToCheck++){
+        for(int rowToCheck = (row-1 < 0) ? 0: row-1; rowToCheck <= row + 1 && rowToCheck < getRows(); rowToCheck++){
+            for(int columnToCheck = (column-1 < 0) ? 0: column-1; columnToCheck <= column + 1 && columnToCheck < getColumns(); columnToCheck++){
                 //ignore the cell itself
-                if(columnToCheck != column && rowToCheck != row){
+                if(columnToCheck != column || rowToCheck != row){
                     //check if the neighbour is zero or one if one, increment alive neighbour count
                     if(get(rowToCheck,columnToCheck) == ALIVE){
                         numberOfAliveNeighbours++;
@@ -137,6 +137,5 @@ public class GameOfLife extends Matrix {
         // TODO: create a game field, add at least a Blinker and a Glider, then run a fixed
         // TODO: number of generations - read it from args[0] if present, else use 20:
         // TODO:   print the field with a BoolMatrixPrinter, call step(), and Thread.sleep a little.
-        throw new UnsupportedOperationException("TODO");
     }
 }
