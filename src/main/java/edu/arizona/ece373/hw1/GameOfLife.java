@@ -72,9 +72,28 @@ public class GameOfLife extends Matrix {
      * then install it with the inherited {@link Matrix#setData(int[][])}.</p>
      */
     public void step() {
-        // TODO: allocate a local int[getRows()][getColumns()], fill it by applying the rules to
-        // TODO: the current generation, then call setData(next).
-        throw new UnsupportedOperationException("TODO");
+        // Array next stores copy of the field at the beginning then after for loops finishes
+        // it will store next step of the game.
+        int[][] next = getData();
+        // Iterate through each cell and check their alive neighbours to determine their status ALIVE or DEAD.
+        for(int row = 0; row < getRows(); row++){
+            for(int column = 0; column < getColumns(); column++){
+                //Find alive neighbours
+                int numberOfAliveNeighbours = countLiveNeighbours(row,column);
+                // Check for ranges:
+                // < 2 will be dead cell
+                // 2 or 3 Alive cell stays alive Dead cell becomes alive if neighbour number is 3
+                // > 3 will be dead cell
+                if(numberOfAliveNeighbours < 2 || numberOfAliveNeighbours > 3){
+                    next[row][column] = DEAD;
+                }
+                // Check for dead Cell becoming alive case.
+                else if(next[row][column] == DEAD && numberOfAliveNeighbours == 3){
+                    next[row][column] = ALIVE;
+                }
+            }
+        }
+        setData(next);
     }
 
     /**
@@ -98,7 +117,7 @@ public class GameOfLife extends Matrix {
                 //ignore the cell itself
                 if(columnToCheck != column && rowToCheck != row){
                     //check if the neighbour is zero or one if one, increment alive neighbour count
-                    if(get(rowToCheck,columnToCheck) == 1){
+                    if(get(rowToCheck,columnToCheck) == ALIVE){
                         numberOfAliveNeighbours++;
                     }
                 }
