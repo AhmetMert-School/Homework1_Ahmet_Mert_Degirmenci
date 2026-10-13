@@ -17,8 +17,11 @@ package edu.arizona.ece373.hw1;
 
 public class Matrix {
 
-    //Holds 2-dimensional array for Matrix class
+    /**
+     * Holds 2-dimensional array for Matrix classHolds 2-dimensional array for Matrix class
+     */
     private int[][] data;
+
     /**
      * Creates a matrix of the given size whose cells are all zero.
      *
@@ -68,7 +71,7 @@ public class Matrix {
     }
 
     /**
-     * Returns the cells of this matrix.
+     * Returns the cells of this matrix by creating copy array and returning it.
      *
      * @return the current values, {@code result[row][column]}
      */
