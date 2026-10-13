@@ -87,7 +87,24 @@ public class GameOfLife extends Matrix {
     public int countLiveNeighbours(int row, int column) {
         // TODO: look at the eight surrounding coordinates and count the live ones,
         // TODO: skipping coordinates that fall outside the field.
-        throw new UnsupportedOperationException("TODO");
+        //Checks the beginning index of the neighbours if it is out of bounds assigns the closest value
+        int rowToCheck = (row-1 < 0) ? 0: row-1;
+        int columnToCheck = (column-1 < 0) ? 0: column-1;
+        int numberOfAliveNeighbours = 0;
+        //for loop continues either row + 1 is reached or rightmost, bottom bound is reached
+        // to not include the outside bound indexes
+        for(; rowToCheck <= row + 1 && rowToCheck < getRows(); rowToCheck++){
+            for(; columnToCheck <= column + 1 && columnToCheck < getColumns(); columnToCheck++){
+                //ignore the cell itself
+                if(columnToCheck != column && rowToCheck != row){
+                    //check if the neighbour is zero or one if one, increment alive neighbour count
+                    if(get(rowToCheck,columnToCheck) == 1){
+                        numberOfAliveNeighbours++;
+                    }
+                }
+            }
+        }
+        return numberOfAliveNeighbours;
     }
 
     /**
