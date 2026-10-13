@@ -1,6 +1,7 @@
 //------------------------------------------------------
 // Homework 1
-// Written by: (your name and student ID)
+// Written by: Ahmet Mert Degirmenci ID: 23829642
+// Date 10/13/2026
 // ECE 373 Object-Oriented Software Design, Section 001 - Fall 2026
 // The University of Arizona
 //------------------------------------------------------
@@ -50,9 +51,19 @@ public class GameOfLife extends Matrix {
      *                                  negative, or if the shape does not fit entirely on the field
      */
     public void addShape(Shape shape, int row, int column) {
-        // TODO: reject null, negative coordinates, and shapes that would stick out of the field;
-        // TODO: then copy every cell of the shape onto the field.
-        throw new UnsupportedOperationException("TODO");
+        // Check for negative coordinates.
+        // Then use length of shape plus coordinates to check if the shape is out of the bounds
+        // Coordinates that are greater than bounds will also be checked at the same algorithm that checks shape out of bounds
+        if(row < 0 || column < 0 || shape.getColumns() + column > this.getColumns() || shape.getRows() + row > this.getRows()){
+            throw new IllegalArgumentException("Input cannot be negative or the shape is out of bounds");
+        }
+        //shapeRow and shapeColumn stores index of the shape's cell that will be copied to the field
+        //Actual index in the field to be copied will be starting index + index of shape's cell
+        for(int shapeRow = 0; shapeRow < shape.getRows(); shapeRow++){
+            for(int shapeColumn = 0; shapeColumn < shape.getColumns(); shapeColumn++){
+                this.set(shapeRow + row, shapeColumn + column, shape.get(shapeRow,shapeColumn));
+            }
+        }
     }
 
     /**
@@ -62,9 +73,28 @@ public class GameOfLife extends Matrix {
      * then install it with the inherited {@link Matrix#setData(int[][])}.</p>
      */
     public void step() {
-        // TODO: allocate a local int[getRows()][getColumns()], fill it by applying the rules to
-        // TODO: the current generation, then call setData(next).
-        throw new UnsupportedOperationException("TODO");
+        // Array next stores copy of the field at the beginning then after for loops finishes
+        // it will store next step of the game.
+        int[][] next = getData();
+        // Iterate through each cell and check their alive neighbours to determine their status ALIVE or DEAD.
+        for(int row = 0; row < getRows(); row++){
+            for(int column = 0; column < getColumns(); column++){
+                //Find alive neighbours
+                int numberOfAliveNeighbours = countLiveNeighbours(row,column);
+                // Check for ranges:
+                // < 2 will be dead cell
+                // 2 or 3 Alive cell stays alive Dead cell becomes alive if neighbour number is 3
+                // > 3 will be dead cell
+                if(numberOfAliveNeighbours < 2 || numberOfAliveNeighbours > 3){
+                    next[row][column] = DEAD;
+                }
+                // Check for dead Cell becoming alive case.
+                else if(next[row][column] == DEAD && numberOfAliveNeighbours == 3){
+                    next[row][column] = ALIVE;
+                }
+            }
+        }
+        setData(next);
     }
 
     /**
@@ -75,9 +105,24 @@ public class GameOfLife extends Matrix {
      * @return a number between 0 and 8
      */
     public int countLiveNeighbours(int row, int column) {
-        // TODO: look at the eight surrounding coordinates and count the live ones,
-        // TODO: skipping coordinates that fall outside the field.
-        throw new UnsupportedOperationException("TODO");
+
+        //Checks the beginning index of the neighbours if it is out of bounds assigns the closest value
+
+        int numberOfAliveNeighbours = 0;
+        //for loop continues either row + 1 is reached or rightmost, bottom bound is reached
+        // to not include the outside bound indexes
+        for(int rowToCheck = (row-1 < 0) ? 0: row-1; rowToCheck <= row + 1 && rowToCheck < getRows(); rowToCheck++){
+            for(int columnToCheck = (column-1 < 0) ? 0: column-1; columnToCheck <= column + 1 && columnToCheck < getColumns(); columnToCheck++){
+                //ignore the cell itself
+                if(columnToCheck != column || rowToCheck != row){
+                    //check if the neighbour is zero or one if one, increment alive neighbour count
+                    if(get(rowToCheck,columnToCheck) == ALIVE){
+                        numberOfAliveNeighbours++;
+                    }
+                }
+            }
+        }
+        return numberOfAliveNeighbours;
     }
 
     /**
@@ -88,9 +133,51 @@ public class GameOfLife extends Matrix {
      * @throws InterruptedException if the animation is interrupted while sleeping between frames
      */
     public static void main(String[] args) throws InterruptedException {
-        // TODO: create a game field, add at least a Blinker and a Glider, then run a fixed
-        // TODO: number of generations - read it from args[0] if present, else use 20:
-        // TODO:   print the field with a BoolMatrixPrinter, call step(), and Thread.sleep a little.
-        throw new UnsupportedOperationException("TODO");
+        //Print welcome message
+        System.out.println("***Welcome to the ECE 373 Homework 1 Game of Life driver.***");
+        System.out.println("************************************************************");
+        //First variable holds how many generations there will be default generation number is 20
+        //Second variable holds the current generation
+        int numberOfGenerations = 20;
+        int generation = 0;
+        //Generate printer object
+        BoolMatrixPrinter printer = new BoolMatrixPrinter();
+        //Initialize the Game field
+        GameOfLife game = new GameOfLife(26, 30);
+
+        // Added some shapes to the field to see the outcome
+        // After 172 generations this configuration will steady state result of
+        // two blinkers and 3 blocks. If you want to see it, decrease the time delay to make things faster
+        // and input 180 as args so that you can reach the steady state
+        game.addShape(Shape.blinker(), 1, 1);
+        game.addShape(Shape.glider(), 8, 0);
+        game.addShape(Shape.glider(), 8, 5);
+        game.addShape(Shape.glider(), 8, 11);
+        game.addShape(Shape.glider(), 8, 17);
+        game.addShape(Shape.glider(), 8, 23);
+        game.addShape(Shape.block(), 20,0);
+        game.addShape(Shape.block(), 20,5);
+        game.addShape(Shape.block(), 20,10);
+        game.addShape(Shape.beehive(),20,17);
+        game.addShape(Shape.toad(), 5,20);
+        game.addShape(Shape.boat(), 23,15);
+
+        //Check if there is any args if so update the number of generations
+        if(args.length > 0){
+            numberOfGenerations = Integer.parseInt(args[0]);
+        }
+        //Print out each generation and wait some time then move to the next generation
+        while(generation < numberOfGenerations){
+            Thread.sleep(800);
+            System.out.println("Generation: " + generation);
+            System.out.print(printer.print(game));
+            game.step();
+            generation++;
+        }
+
+        //Closing message
+        System.out.println();
+        System.out.println("************************************************************");
+        System.out.println("************************ All Done!! ************************");
     }
 }

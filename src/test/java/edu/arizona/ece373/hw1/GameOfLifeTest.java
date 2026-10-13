@@ -1,6 +1,7 @@
 //------------------------------------------------------
 // Homework 1
-// Written by: (your name and student ID)
+// Written by: Ahmet Mert Degirmenci ID: 23829642
+// Date 10/13/2026
 // ECE 373 Object-Oriented Software Design, Section 001 - Fall 2026
 // The University of Arizona
 //------------------------------------------------------
@@ -93,17 +94,53 @@ class GameOfLifeTest {
     }
 
     @Test
-    @Disabled("TODO: remove this annotation once you have written the test")
     @DisplayName("a still life does not change")
     void stillLifeDoesNotChange() {
-        // TODO: place a Beehive or a Boat on a field big enough that it does not touch the edge,
-        // TODO: remember the printed field, run a few steps, and check that nothing changed.
+        GameOfLife stillLifeTest = new GameOfLife(12,12);
+        stillLifeTest.addShape(Shape.beehive(),1,1);
+        stillLifeTest.addShape(Shape.boat(), 6,6);
+        //iterate 1 generation
+        game.step();
+        String expected = ""
+                + "+------------+\n"
+                + "|000000000000|\n"
+                + "|001100000000|\n"
+                + "|010010000000|\n"
+                + "|001100000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000110000|\n"
+                + "|000000101000|\n"
+                + "|000000010000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "+------------+\n";
+        assertEquals(expected,printer.print(stillLifeTest));
     }
 
     @Test
-    @Disabled("TODO: remove this annotation once you have written the test")
     @DisplayName("a lone live cell dies of underpopulation")
     void loneCellDies() {
-        // TODO: switch a single cell on, call step once, and check that the field is empty.
+        GameOfLife oneCellTest = new GameOfLife(12,12);
+        oneCellTest.addShape(new Shape("loneCell", new int[][] {{1}}), 6,6);
+        oneCellTest.step();
+        String expected = ""
+                + "+------------+\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "+------------+\n";
+        assertEquals(expected, printer.print(oneCellTest));
+
     }
 }
