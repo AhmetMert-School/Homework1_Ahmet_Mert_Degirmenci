@@ -119,9 +119,27 @@ class GameOfLifeTest {
     }
 
     @Test
-    @Disabled("TODO: remove this annotation once you have written the test")
     @DisplayName("a lone live cell dies of underpopulation")
     void loneCellDies() {
-        // TODO: switch a single cell on, call step once, and check that the field is empty.
+        GameOfLife oneCellTest = new GameOfLife(12,12);
+        oneCellTest.addShape(new Shape("loneCell", new int[][] {{1}}), 6,6);
+        oneCellTest.step();
+        String expected = ""
+                + "+------------+\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "|000000000000|\n"
+                + "+------------+\n";
+        assertEquals(expected, printer.print(oneCellTest));
+
     }
 }
