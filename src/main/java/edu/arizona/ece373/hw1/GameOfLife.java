@@ -104,10 +104,8 @@ public class GameOfLife extends Matrix {
      * @return a number between 0 and 8
      */
     public int countLiveNeighbours(int row, int column) {
-        // TODO: look at the eight surrounding coordinates and count the live ones,
-        // TODO: skipping coordinates that fall outside the field.
-        //Checks the beginning index of the neighbours if it is out of bounds assigns the closest value
 
+        //Checks the beginning index of the neighbours if it is out of bounds assigns the closest value
 
         int numberOfAliveNeighbours = 0;
         //for loop continues either row + 1 is reached or rightmost, bottom bound is reached
@@ -134,8 +132,51 @@ public class GameOfLife extends Matrix {
      * @throws InterruptedException if the animation is interrupted while sleeping between frames
      */
     public static void main(String[] args) throws InterruptedException {
-        // TODO: create a game field, add at least a Blinker and a Glider, then run a fixed
-        // TODO: number of generations - read it from args[0] if present, else use 20:
-        // TODO:   print the field with a BoolMatrixPrinter, call step(), and Thread.sleep a little.
+        //Print welcome message
+        System.out.println("***Welcome to the ECE 373 Homework 1 Game of Life driver.***");
+        System.out.println("************************************************************");
+        //First variable holds how many generations there will be default generation number is 20
+        //Second variable holds the current generation
+        int numberOfGenerations = 20;
+        int generation = 0;
+        //Generate printer object
+        BoolMatrixPrinter printer = new BoolMatrixPrinter();
+        //Initialize the Game field
+        GameOfLife game = new GameOfLife(26, 30);
+
+        // Added some shapes to the field to see the outcome
+        // After 172 generations this configuration will steady state result of
+        // two blinkers and 3 blocks. If you want to see it, decrease the time delay to make things faster
+        // and input 180 as args so that you can reach the steady state
+        game.addShape(Shape.blinker(), 1, 1);
+        game.addShape(Shape.glider(), 8, 0);
+        game.addShape(Shape.glider(), 8, 5);
+        game.addShape(Shape.glider(), 8, 11);
+        game.addShape(Shape.glider(), 8, 17);
+        game.addShape(Shape.glider(), 8, 23);
+        game.addShape(Shape.block(), 20,0);
+        game.addShape(Shape.block(), 20,5);
+        game.addShape(Shape.block(), 20,10);
+        game.addShape(Shape.beehive(),20,17);
+        game.addShape(Shape.toad(), 5,20);
+        game.addShape(Shape.boat(), 23,15);
+
+        //Check if there is any args if so update the number of generations
+        if(args.length > 0){
+            numberOfGenerations = Integer.parseInt(args[0]);
+        }
+        //Print out each generation and wait some time then move to the next generation
+        while(generation < numberOfGenerations){
+            Thread.sleep(800);
+            System.out.println("Generation: " + generation);
+            System.out.print(printer.print(game));
+            game.step();
+            generation++;
+        }
+
+        //Closing message
+        System.out.println();
+        System.out.println("************************************************************");
+        System.out.println("************************ All Done!! ************************");
     }
 }
