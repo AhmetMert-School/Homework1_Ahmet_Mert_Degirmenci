@@ -39,14 +39,14 @@ public class BoolMatrixPrinter extends MatrixOutlinePrinter {
      * @throws IllegalArgumentException if any cell of the row holds a value other than 0 or 1
      */
     @Override
-    protected String printRow(Matrix matrix, int row) {
+    protected String printRow(final Matrix matrix, final int row) {
         StringBuilder result = new StringBuilder();
         //Iterates through each column
-        for(int column = 0; column < matrix.getColumns(); column++){
+        for (int column = 0; column < matrix.getColumns(); column++) {
             //value stores value from given row column
             int value = matrix.get(row, column);
             // checks for cases 0(dead), 1(alive), if neither throws illegalArgumentException
-            switch (value){
+            switch (value) {
                 case 1:
                     result.append(ALIVE);
                     break;
