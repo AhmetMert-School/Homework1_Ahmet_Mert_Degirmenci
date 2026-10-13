@@ -41,9 +41,9 @@ public class MatrixOutlinePrinter implements MatrixPrinter {
      *                                  {@link #printRow(Matrix, int)} rejects a row
      */
     @Override
-    public String print(Matrix matrix) {
+    public String print(final Matrix matrix) {
         //Reject null matrix
-        if(matrix == null){
+        if (matrix == null) {
             throw new IllegalArgumentException("Matrix cannot be null");
         }
         //firstAndLastLine stores '+-----+\n' line for beginning and end of the print statement
@@ -58,14 +58,14 @@ public class MatrixOutlinePrinter implements MatrixPrinter {
         firstAndLastLine.append(CORNER);
         firstAndLastLine.append("\n");
         // Add horizontal lines at the number of columns
-        for(int i = 0; i < matrix.getColumns(); i++){
+        for (int i = 0; i < matrix.getColumns(); i++) {
             firstAndLastLine.insert(1,HORIZONTAL);
         }
         // Generates middle section of the printed matrix
         // for example 2x4 matrix will generate this outline:
         // |    |
         // |    |
-        for(int i = 0; i < matrix.getRows(); i++){
+        for (int i = 0; i < matrix.getRows(); i++) {
             middle.append(VERTICAL);
             middle.append(printRow(matrix, i));
             middle.append(VERTICAL);
@@ -88,10 +88,10 @@ public class MatrixOutlinePrinter implements MatrixPrinter {
      * @param row    the index of the row to render
      * @return the characters that belong between the two border characters of this line
      */
-    protected String printRow(Matrix matrix, int row) {
+    protected String printRow(final Matrix matrix,final int row) {
         // generate empty strings using getColumns()
         StringBuilder outputRow = new StringBuilder();
-        for(int i = 0; i < matrix.getColumns(); i++){
+        for (int i = 0; i < matrix.getColumns(); i++) {
             outputRow.append(" ");
         }
         return outputRow.toString();
