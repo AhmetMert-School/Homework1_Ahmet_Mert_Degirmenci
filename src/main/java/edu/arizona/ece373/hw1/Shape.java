@@ -151,6 +151,8 @@ public class Shape extends Matrix {
      * @param args ignored
      */
     public static void main(String[] args) {
+        System.out.println("***Welcome to the ECE 373 Homework 1 Shape driver.***");
+        System.out.println("*****************************************************");
         // Create printer obj to print shapes
         BoolMatrixPrinter printer = new BoolMatrixPrinter();
         //create boat shape
@@ -160,5 +162,9 @@ public class Shape extends Matrix {
         //Print them to the console
         System.out.println(printer.print(boat));
         System.out.println(printer.print(beehive));
+
+        System.out.println();
+        System.out.println("************************************************************");
+        System.out.println("************************ All Done!! ************************");
     }
 }
