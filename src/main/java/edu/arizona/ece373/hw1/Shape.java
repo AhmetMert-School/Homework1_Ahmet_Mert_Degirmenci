@@ -15,6 +15,9 @@ package edu.arizona.ece373.hw1;
  */
 public class Shape extends Matrix {
 
+    /**
+     * Stores the name of the shape
+     */
     private String name = "";
 
     /**
