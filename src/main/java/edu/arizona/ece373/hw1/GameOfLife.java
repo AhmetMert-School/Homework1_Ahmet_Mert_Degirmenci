@@ -50,9 +50,19 @@ public class GameOfLife extends Matrix {
      *                                  negative, or if the shape does not fit entirely on the field
      */
     public void addShape(Shape shape, int row, int column) {
-        // TODO: reject null, negative coordinates, and shapes that would stick out of the field;
-        // TODO: then copy every cell of the shape onto the field.
-        throw new UnsupportedOperationException("TODO");
+        // Check for negative coordinates.
+        // Then use length of shape plus coordinates to check if the shape is out of the bounds
+        // Coordinates that are greater than bounds will also be checked at the same algorithm that checks shape out of bounds
+        if(row < 0 || column < 0 || shape.getColumns() + column > this.getColumns() || shape.getRows() + row > this.getRows()){
+            throw new IllegalArgumentException("Input cannot be negative or the shape is out of bounds");
+        }
+        //shapeRow and shapeColumn stores index of the shape's cell that will be copied to the field
+        //Actual index in the field to be copied will be starting index + index of shape's cell
+        for(int shapeRow = 0; shapeRow < shape.getRows(); shapeRow++){
+            for(int shapeColumn = 0; shapeColumn < shape.getColumns(); shapeColumn++){
+                this.set(shapeRow + row, shapeColumn + column, shape.get(shapeRow,shapeColumn));
+            }
+        }
     }
 
     /**
