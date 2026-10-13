@@ -1,6 +1,7 @@
 //------------------------------------------------------
 // Homework 1
-// Written by: (your name and student ID)
+// Written by: Ahmet Mert Degirmenci ID: 23829642
+// Date 10/13/2026
 // ECE 373 Object-Oriented Software Design, Section 001 - Fall 2026
 // The University of Arizona
 //------------------------------------------------------
